@@ -27,4 +27,25 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.06" />
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arts"
+        android:id="@+id/checkBoxArts"
+        android:layout_weight="0.06" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fashion and Style"
+        android:id="@+id/checkBoxFashion"
+        android:layout_weight="0.08" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sports"
+        android:id="@+id/checkBoxSports"
+        android:layout_weight="0.06" />
+
 </LinearLayout>

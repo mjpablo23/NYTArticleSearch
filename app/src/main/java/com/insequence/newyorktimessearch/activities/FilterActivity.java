@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,7 +29,10 @@ import java.util.List;
  */
 public class FilterActivity extends AppCompatActivity implements OnItemSelectedListener{
 
-
+    CheckBox ch1,ch2,ch3;
+    boolean checkArts = false;
+    boolean checkFashion = false;
+    boolean checkSports = false;
     private DatePicker datePicker;
     private Calendar calendar;
     private TextView dateView;
@@ -38,6 +43,7 @@ public class FilterActivity extends AppCompatActivity implements OnItemSelectedL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
+        // code for date picker
         Button button = (Button) findViewById(R.id.dateButton);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +63,8 @@ public class FilterActivity extends AppCompatActivity implements OnItemSelectedL
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showDate(year, month+1, day);
 
-
+        // code for spinner
+        // spinner https://www.tutorialspoint.com/android/android_spinner_control.htm
         // Spinner element
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
@@ -77,6 +84,38 @@ public class FilterActivity extends AppCompatActivity implements OnItemSelectedL
 
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
+
+        // https://www.tutorialspoint.com/android/android_checkbox_control.htm
+        // code for checkboxes
+        ch1=(CheckBox)findViewById(R.id.checkBoxArts);
+        ch2=(CheckBox)findViewById(R.id.checkBoxFashion);
+        ch3=(CheckBox)findViewById(R.id.checkBoxSports);
+
+        ch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                checkArts = isChecked;
+                System.out.println(isChecked);
+                // Toast.makeText(, "arts: " + isChecked);
+            }
+        });
+
+        ch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                checkFashion = isChecked;
+                System.out.println(isChecked);
+            }
+        });
+
+        ch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                checkSports = isChecked;
+                System.out.println(isChecked);
+            }
+        });
+
     }
 
     @Override
