@@ -77,7 +77,7 @@ public class FilterActivity extends AppCompatActivity implements OnItemSelectedL
         List<String> categories = new ArrayList<String>();
         categories.add("Newest");
         categories.add("Oldest");
-        
+
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
