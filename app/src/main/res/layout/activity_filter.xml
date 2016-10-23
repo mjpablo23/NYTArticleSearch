@@ -48,4 +48,13 @@
         android:id="@+id/checkBoxSports"
         android:layout_weight="0.06" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/buttonSave"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.06"
+        android:onClick="saveClickHandler"/>
+
 </LinearLayout>

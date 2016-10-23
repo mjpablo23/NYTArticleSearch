@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.insequence.newyorktimessearch.Article;
 import com.insequence.newyorktimessearch.ArticleArrayAdapter;
@@ -42,6 +43,15 @@ public class SearchActivity extends AppCompatActivity {
 
     ArrayList<Article> articles;
     ArticleArrayAdapter adapter;
+
+    // stuff for filter
+    private final int REQUEST_CODE_FILTER = 20;
+    Boolean filterOn = false;
+    boolean checkArts = false;
+    boolean checkFashion = false;
+    boolean checkSports = false;
+    private int year = 0, month = 0, day = 0;
+    private String spinnerResult = "";
 
 //    @OnClick(R.id.gvResults)
 //    public void
@@ -110,14 +120,34 @@ public class SearchActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 Intent i = new Intent(getApplicationContext(), FilterActivity.class);
                 System.out.println("start filter activity");
-                startActivity(i);
+
+                // i.putExtra("bookTitle", book.getTitle());
+                startActivityForResult(i, REQUEST_CODE_FILTER);
                 return true;
             }
         });
-
-
-
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // REQUEST_CODE is defined above
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_FILTER) {
+            // Extract name value from result extras
+//            String name = data.getExtras().getString("name");
+            filterOn = true;
+            checkArts = data.getExtras().getBoolean("checkArts");
+            checkFashion = data.getExtras().getBoolean("checkFashion");
+            checkSports = data.getExtras().getBoolean("checkSports");
+            spinnerResult = data.getExtras().getString("spinnerResult");
+            year = data.getExtras().getInt("year");
+            month = data.getExtras().getInt("month");
+            day = data.getExtras().getInt("day");
+            String dateStr = "mm/dd/yyyy: " + month + "" + day + "" + year;
+            // int code = data.getExtras().getInt("code", 0);
+            // Toast the name to display temporarily on screen
+            Toast.makeText(this, "spinner:" + spinnerResult + dateStr, Toast.LENGTH_SHORT).show();
+        }
     }
 
 //    @Override
@@ -135,11 +165,29 @@ public class SearchActivity extends AppCompatActivity {
 //        return super.onOptionsItemSelected(item);
 //    }
 
+    // instructions:  https://developer.nytimes.com/article_search_v2.json#/README
     // NY Times search api: Here's your API Key for the Article Search API: 0093eba3ab344318ab5be88dd94f91e0
     // normal api call with api key
     // https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=0093eba3ab344318ab5be88dd94f91e0
     // with query for android topics
     // // https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=0093eba3ab344318ab5be88dd94f91e0&q=android
+
+//    &facet_field=day_of_week
+//    By default, facet counts ignore all filters and return the count for all results of a query. For the following queries, the facet count in each response will be identical, even though the results returned in one set is restricted to articles published in 2012:
+//    q=obama&facet_field=source&begin_date=20120101&end_date=20121231
+//    q=obama&facet_field=source
+
+//    Filter Query Examples
+//
+//    Restrict your search to articles with The New York Times as the source:
+//
+//            &fq=source:("The New York Times")
+//    Restrict your search to articles from either the Sports or Foreign desk:
+//
+//            &fq=news_desk:("Sports" "Foreign")
+//    Restrict your search to articles that are about New York City and from the Sports desk:
+//
+//            &fq=news_desk:("Sports") AND glocations:("NEW YORK CITY")
 
     public void onArticleSearch(View view) {
         String query = etQuery.getText().toString();
@@ -155,7 +203,32 @@ public class SearchActivity extends AppCompatActivity {
         params.put("page", 0);
         params.put("q", query);  // search term
 
-        // network request.  url request.  response handler is the json http response handler
+        if (filterOn) {
+            // try query for begin date
+            String begin_date = String.format("%04d%02d%02d", year, month, day);
+            Log.d("Debug date", begin_date);
+            // params.put("begin_date", "20161001");
+            params.put("begin_date", begin_date);
+            // params.put("end_date", "20161020");
+            params.put("sort", spinnerResult);
+
+            String news_desk_string = "news_desk:(";
+            if (checkArts) {
+                news_desk_string += "\"Arts\"";
+            }
+            if (checkSports) {
+                news_desk_string += "\"Sports\"";
+            }
+            if (checkFashion) {
+                news_desk_string += "\"Fashion & Style\"";
+            }
+
+            news_desk_string += ")";
+            Log.d("Debug news desk", news_desk_string);
+
+            params.put("fq", news_desk_string);
+        }
+        // network request.  url request.  response handle is the json http response handler
         client.get(url, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

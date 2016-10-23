@@ -2,8 +2,10 @@ package com.insequence.newyorktimessearch.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +39,7 @@ public class FilterActivity extends AppCompatActivity implements OnItemSelectedL
     private Calendar calendar;
     private TextView dateView;
     private int year, month, day;
+    private String spinnerResult = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,6 @@ public class FilterActivity extends AppCompatActivity implements OnItemSelectedL
 
         // code for date picker
         Button button = (Button) findViewById(R.id.dateButton);
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,9 +61,9 @@ public class FilterActivity extends AppCompatActivity implements OnItemSelectedL
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
 
-        month = calendar.get(Calendar.MONTH);
+        month = calendar.get(Calendar.MONTH) + 1;
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        showDate(year, month+1, day);
+        showDate(year, month, day);
 
         // code for spinner
         // spinner https://www.tutorialspoint.com/android/android_spinner_control.htm
@@ -73,9 +75,9 @@ public class FilterActivity extends AppCompatActivity implements OnItemSelectedL
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
-        categories.add("Oldest");
         categories.add("Newest");
-
+        categories.add("Oldest");
+        
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
@@ -116,13 +118,32 @@ public class FilterActivity extends AppCompatActivity implements OnItemSelectedL
             }
         });
 
+        // save button
+        // Button saveButton = (Button) findViewById(R.id.buttonSave);
     }
 
+    // http://stackoverflow.com/questions/5588804/android-button-setonclicklistener-design-help
+    // click handler for save button
+    public void saveClickHandler(View target) {
+        // Do stuff
+        Intent data = new Intent();
+        data.putExtra("checkArts", checkArts);
+        data.putExtra("checkFashion", checkFashion);
+        data.putExtra("checkSports", checkSports);
+        data.putExtra("spinnerResult", spinnerResult);
+        data.putExtra("year", year);
+        data.putExtra("month", month);
+        data.putExtra("day", day);
+        setResult(RESULT_OK, data);
+        finish();
+    }
+
+    // getting spinner data back
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
         String item = parent.getItemAtPosition(position).toString();
-
+        spinnerResult = item;
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
@@ -139,7 +160,8 @@ public class FilterActivity extends AppCompatActivity implements OnItemSelectedL
     protected Dialog onCreateDialog(int id) {
         // TODO Auto-generated method stub
         if (id == 999) {
-            return new DatePickerDialog(this, myDateListener, year, month, day);
+            Log.d("Debug", "start datepicker with month: " + month);
+            return new DatePickerDialog(this, myDateListener, year, month-1, day);
         }
         return null;
     }
