@@ -14,8 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -43,9 +41,9 @@ public class SearchActivity extends AppCompatActivity {
 //    GridView gvResults;
 //    Button btnSearch;
 
-    @BindView(R.id.etQuery) EditText etQuery;
+//    @BindView(R.id.etQuery) EditText etQuery;
     @BindView(R.id.gvResults) GridView gvResults;
-    @BindView(R.id.btnSearch) Button btnSearch;
+//    @BindView(R.id.btnSearch) Button btnSearch;
 
     ArrayList<Article> articles;
     ArticleArrayAdapter adapter;
@@ -218,11 +216,8 @@ public class SearchActivity extends AppCompatActivity {
 //            &fq=news_desk:("Sports") AND glocations:("NEW YORK CITY")
 
     public void onArticleSearch(View view) {
-        String query = etQuery.getText().toString();
-        // toast makes message show up then disappear
-        // Toast.makeText(this, "searching for " + query, Toast.LENGTH_LONG).show();
-
-        sendQuery(query);
+//        String query = etQuery.getText().toString();
+//        sendQuery(query);
     }
 
     public void sendQuery(String query) {

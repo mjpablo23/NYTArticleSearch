@@ -12,38 +12,21 @@
     tools:context=".activities.SearchActivity"
     tools:showIn="@layout/activity_search">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:minHeight="?attr/actionBarSize"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/white"
-        android:background="?attr/colorPrimary">
-    </android.support.v7.widget.Toolbar>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/search"
-        android:id="@+id/btnSearch"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="onArticleSearch"/>
-
     <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gvResults"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/btnSearch"
-        android:numColumns="4" />
+        android:numColumns="4"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/etQuery"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/btnSearch"
-        android:hint="@string/hint" />
+    <!--<GridView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/gvResults"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_below="@+id/btnSearch"-->
+        <!--android:numColumns="4" />-->
+
 </RelativeLayout>
