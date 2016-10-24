@@ -40,7 +40,7 @@ The following **bonus** features are implemented:
 * [ ] Replace the embedded `WebView` with [Chrome Custom Tabs](http://guides.codepath.com/android/Chrome-Custom-Tabs) using a custom action button for sharing. (_**2 points**_)
 
 The following **additional** features are implemented:
-* [y] clears the gridview for new searches so old search results aren't shown
+* [y] clears the gridview for new searches so old search results aren't shown.  less confusing
 
 * [ ] List anything else that you can get done to improve the app functionality!
 
@@ -48,7 +48,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/PiMnKmm.gifv' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
