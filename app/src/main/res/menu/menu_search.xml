@@ -10,12 +10,12 @@
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.support.v7.widget.SearchView"/>
 
+    <!--android:icon="@drawable/filter_icon"-->
     <item
         android:id="@+id/filter"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/filter_icon"
-        android:title="Filter">
-    </item>
+        app:showAsAction="never"
+        android:title="Filter"/>
+
 
     <!--<item android:id="@+id/action_search"-->
         <!--android:orderInCategory="5"-->
