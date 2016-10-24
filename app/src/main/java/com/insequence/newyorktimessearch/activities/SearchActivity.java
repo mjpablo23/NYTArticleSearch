@@ -41,6 +41,7 @@ public class SearchActivity extends AppCompatActivity {
 
     ArrayList<Article> articles;
     ArticleArrayAdapter adapter;
+//    ArticleRecyclerAdapter adapter;
 
     // stuff for filter
     private final int REQUEST_CODE_FILTER = 20;
@@ -75,13 +76,19 @@ public class SearchActivity extends AppCompatActivity {
         adapter = new ArticleArrayAdapter(this, articles);
         gvResults.setAdapter(adapter);
 
+//        RecyclerView rvArticles = (RecyclerView) findViewById(R.id.rvResults);
+//        adapter = new ArticleRecyclerAdapter(this, articles);
+//        rvArticles.setAdapter(adapter);
+        // rvArticles.setLayoutManager(new LinearLayoutManager(this));
+//        rvArticles.setLayoutManager(new StaggeredGridLayoutManager(10,0));
 
         // people from codepath class
-        // pragyan.bits@gmail.com -- riverbed, sunnyvale,
-        // pritish.karanjkar@gmail.com -- ebay, has many ideas
+        // pragyan.bits@gmail.com -- riverbed, sunnyvale, girl
+        // pritish.karanjkar@gmail.com -- ebay, has many ideas, guy
 
         // hook up listener for grid click
         gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // rvArticles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // create an intent to display the article
@@ -258,8 +265,13 @@ public class SearchActivity extends AppCompatActivity {
                 JSONArray articleJsonResults = null;
                 try {
                     articleJsonResults = response.getJSONObject("response").getJSONArray("docs");
-                    adapter.addAll(Article.fromJSONArray(articleJsonResults));
-                    // adapter.notifyDataSetChanged();  // don't need this since adding in adapter
+
+                    articles.addAll(Article.fromJSONArray(articleJsonResults));
+
+                    // original call using gridview
+                    // adapter.addAll(Article.fromJSONArray(articleJsonResults));
+
+                    adapter.notifyDataSetChanged();  // don't need this since adding in adapter
                     Log.d("Debug", articles.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
