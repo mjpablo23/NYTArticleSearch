@@ -29,14 +29,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SearchActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SearchActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/insequence/newyorktimessearch/activities/SearchActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-32.22222">
-              <caret line="96" column="45" selection-start-line="96" selection-start-column="45" selection-end-line="96" selection-end-column="45" />
+            <state vertical-scroll-proportion="-3.5075126">
+              <caret line="135" column="18" selection-start-line="135" selection-start-column="18" selection-end-line="135" selection-end-column="18" />
               <folding>
-                <element signature="e#3146#3781#0" expanded="true" />
-                <element signature="e#3780#3781#0" expanded="true" />
+                <element signature="e#3384#4019#0" expanded="true" />
+                <element signature="e#4018#4019#0" expanded="true" />
+                <element signature="e#4091#4309#0" expanded="true" />
+                <element signature="e#4308#4309#0" expanded="true" />
+                <element signature="e#11810#12677#0" expanded="true" />
+                <element signature="e#12676#12677#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,12 +95,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArticleArrayAdapter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ArticleArrayAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/insequence/newyorktimessearch/ArticleArrayAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61661345">
+            <state vertical-scroll-proportion="0.0">
               <caret line="44" column="46" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EndlessScrollListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/insequence/newyorktimessearch/EndlessScrollListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+              <folding>
+                <element signature="e#836#837#0" expanded="true" />
+                <element signature="e#892#893#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1816,13 +1833,14 @@
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/insequence/newyorktimessearch/ArticleRecyclerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_search.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/insequence/newyorktimessearch/EndlessScrollListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/insequence/newyorktimessearch/activities/SearchActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1438" />
-    <option name="y" value="43" />
+    <option name="x" value="1402" />
+    <option name="y" value="33" />
     <option name="width" value="1622" />
     <option name="height" value="962" />
   </component>
@@ -2252,7 +2270,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1438" y="43" width="1622" height="962" extended-state="0" />
+    <frame x="1402" y="33" width="1622" height="962" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2348,22 +2366,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/insequence/newyorktimessearch/activities/SearchActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/insequence/newyorktimessearch/ArticleArrayAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-32.22222">
-          <caret line="96" column="45" selection-start-line="96" selection-start-column="45" selection-end-line="96" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="46" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/insequence/newyorktimessearch/EndlessScrollListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding>
-            <element signature="e#3146#3781#0" expanded="true" />
-            <element signature="e#3780#3781#0" expanded="true" />
+            <element signature="e#836#837#0" expanded="true" />
+            <element signature="e#892#893#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/insequence/newyorktimessearch/ArticleArrayAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/insequence/newyorktimessearch/activities/SearchActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61661345">
-          <caret line="44" column="46" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
-          <folding />
+        <state vertical-scroll-proportion="-3.5075126">
+          <caret line="135" column="18" selection-start-line="135" selection-start-column="18" selection-end-line="135" selection-end-column="18" />
+          <folding>
+            <element signature="e#3384#4019#0" expanded="true" />
+            <element signature="e#4018#4019#0" expanded="true" />
+            <element signature="e#4091#4309#0" expanded="true" />
+            <element signature="e#4308#4309#0" expanded="true" />
+            <element signature="e#11810#12677#0" expanded="true" />
+            <element signature="e#12676#12677#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

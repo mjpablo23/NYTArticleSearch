@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.insequence.newyorktimessearch.Article;
 import com.insequence.newyorktimessearch.ArticleArrayAdapter;
+import com.insequence.newyorktimessearch.EndlessScrollListener;
 import com.insequence.newyorktimessearch.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -51,6 +52,11 @@ public class SearchActivity extends AppCompatActivity {
     boolean checkSports = false;
     private int year = 0, month = 0, day = 0;
     private String spinnerResult = "";
+
+    AsyncHttpClient client = new AsyncHttpClient();
+    String url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+    RequestParams params;
+    int page = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +109,34 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
+
+        // infinite scrolling
+        gvResults.setOnScrollListener(new EndlessScrollListener() {
+            @Override
+            public boolean onLoadMore(int page, int totalItemsCount) {
+                loadNextDataFromApi(page);
+                return true;
+            }
+        });
+    }
+
+    // infinite scrolling
+    // Append the next page of data into the adapter
+    // This method probably sends out a network request and appends new data items to your adapter.
+    public void loadNextDataFromApi(int offset) {
+        // Send an API request to retrieve appropriate paginated data
+        //  --> Send the request including an offset value (i.e `page`) as a query parameter.
+        //  --> Deserialize and construct new model objects from the API response
+        //  --> Append the new data objects to the existing set of items inside the array of items
+        //  --> Notify the adapter of the new items made with `notifyDataSetChanged()`
+
+        if (params.has("page")) {
+            params.remove("page");
+        }
+        page += 1;
+        params.put("page", String.format("%d", page));
+        sendClientCall(url, params);
+
     }
 
     @Override
@@ -223,13 +257,18 @@ public class SearchActivity extends AppCompatActivity {
             return;
         }
 
-        AsyncHttpClient client = new AsyncHttpClient();
-        String url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+        // articles.clear();
+
+        client = new AsyncHttpClient();
+//        AsyncHttpClient client = new AsyncHttpClient();
+//        String url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 
         // request handler
-        RequestParams params = new RequestParams();
+//        RequestParams params = new RequestParams();
+        params = new RequestParams();
         params.put("api-key", "0093eba3ab344318ab5be88dd94f91e0"); // my api key
-        params.put("page", 0);
+        page = 0;
+        params.put("page", page);
         params.put("q", query);  // search term
 
         if (filterOn) {
@@ -257,6 +296,11 @@ public class SearchActivity extends AppCompatActivity {
 
             params.put("fq", news_desk_string);
         }
+
+        sendClientCall(url, params);
+    }
+
+    public void sendClientCall(String url, RequestParams params) {
         // network request.  url request.  response handle is the json http response handler
         client.get(url, params, new JsonHttpResponseHandler() {
             @Override
