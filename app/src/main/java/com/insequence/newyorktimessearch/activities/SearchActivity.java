@@ -164,7 +164,14 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // perform query here
+
+                // clear gridview for new query
+                adapter.clear();
+
                 sendQuery(query);
+
+                // clears focus from gridview
+                gvResults.setSelection(-1);
 
                 searchView.clearFocus();
                 return true;
@@ -195,7 +202,7 @@ public class SearchActivity extends AppCompatActivity {
             day = data.getExtras().getInt("day");
             String dateStr = "mm/dd/yyyy: " + month + "" + day + "" + year;
             // Toast the name to display temporarily on screen
-            Toast.makeText(this, "spinner:" + spinnerResult + dateStr, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "spinner:" + spinnerResult + " " + dateStr, Toast.LENGTH_SHORT).show();
         }
     }
 

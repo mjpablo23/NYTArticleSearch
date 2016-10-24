@@ -7,7 +7,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set Date"
+        android:text="Set Begin Date"
         android:id="@+id/dateButton"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.06" />

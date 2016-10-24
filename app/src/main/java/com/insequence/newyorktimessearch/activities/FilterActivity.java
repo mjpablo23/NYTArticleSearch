@@ -152,7 +152,7 @@ public class FilterActivity extends AppCompatActivity implements OnItemSelectedL
     }
 
     private void showDate(int year, int month, int day) {
-        dateView.setText(new StringBuilder().append(month).append("/")
+        dateView.setText(new StringBuilder().append("Begin date: ").append(month).append("/")
                 .append(day).append("/").append(year));
     }
 
