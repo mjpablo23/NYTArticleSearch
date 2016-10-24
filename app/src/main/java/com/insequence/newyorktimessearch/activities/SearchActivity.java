@@ -37,13 +37,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class SearchActivity extends AppCompatActivity {
 
-//    EditText etQuery;
-//    GridView gvResults;
-//    Button btnSearch;
-
-//    @BindView(R.id.etQuery) EditText etQuery;
     @BindView(R.id.gvResults) GridView gvResults;
-//    @BindView(R.id.btnSearch) Button btnSearch;
 
     ArrayList<Article> articles;
     ArticleArrayAdapter adapter;
@@ -56,9 +50,6 @@ public class SearchActivity extends AppCompatActivity {
     boolean checkSports = false;
     private int year = 0, month = 0, day = 0;
     private String spinnerResult = "";
-
-//    @OnClick(R.id.gvResults)
-//    public void
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +64,6 @@ public class SearchActivity extends AppCompatActivity {
     public void setupViews() {
         // setup with butterknife
         ButterKnife.bind(this);
-//        etQuery = (EditText) findViewById(R.id.etQuery);
-//        gvResults = (GridView) findViewById(R.id.gvResults);
-//        btnSearch = (Button) findViewById(R.id.btnSearch);
 
         // Find the toolbar view inside the activity layout
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -102,8 +90,6 @@ public class SearchActivity extends AppCompatActivity {
                 // get the article to display
                 Article article = articles.get(position);
 
-                // pass in that article into intent
-//                i.putExtra("url", article.getWebUrl());
                 i.putExtra("article", article);
                 // launch activity
                 startActivity(i);
@@ -125,7 +111,6 @@ public class SearchActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), FilterActivity.class);
                 System.out.println("start filter activity");
 
-                // i.putExtra("bookTitle", book.getTitle());
                 startActivityForResult(i, REQUEST_CODE_FILTER);
                 return true;
             }
@@ -160,7 +145,6 @@ public class SearchActivity extends AppCompatActivity {
         // REQUEST_CODE is defined above
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_FILTER) {
             // Extract name value from result extras
-//            String name = data.getExtras().getString("name");
             filterOn = true;
             checkArts = data.getExtras().getBoolean("checkArts");
             checkFashion = data.getExtras().getBoolean("checkFashion");
@@ -170,7 +154,6 @@ public class SearchActivity extends AppCompatActivity {
             month = data.getExtras().getInt("month");
             day = data.getExtras().getInt("day");
             String dateStr = "mm/dd/yyyy: " + month + "" + day + "" + year;
-            // int code = data.getExtras().getInt("code", 0);
             // Toast the name to display temporarily on screen
             Toast.makeText(this, "spinner:" + spinnerResult + dateStr, Toast.LENGTH_SHORT).show();
         }
@@ -215,10 +198,10 @@ public class SearchActivity extends AppCompatActivity {
 //
 //            &fq=news_desk:("Sports") AND glocations:("NEW YORK CITY")
 
-    public void onArticleSearch(View view) {
+//    public void onArticleSearch(View view) {
 //        String query = etQuery.getText().toString();
 //        sendQuery(query);
-    }
+//    }
 
     public void sendQuery(String query) {
 
